@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Keywords Example</title>
+    <script>
+        // Variable Declarations
+        var x = 10;             // 'var' is function-scoped (older way of declaring variables)
+        let y = 20;             // 'let' is block-scoped (modern way)
+        const z = 30;           // 'const' is for constant values that cannot be reassigned
+
+        // Function Declaration
+        function sum(a, b) {
+            return a + b;
+        }
+
+        // Event Listener to trigger sum and display result
+        document.addEventListener("DOMContentLoaded", () => {
+            const result = sum(x, y);
+            document.getElementById("sumResult").innerText = "Sum of x and y: " + result;
+        });
+
+        // Using if-else and switch-case
+        function checkValues() {
+            let result = "";
+            if (x > y) {
+                result = "x is greater than y";
+            } else if (x < y) {
+                result = "x is less than y";
+            } else {
+                result = "x and y are equal";
+            }
+
+            switch (x) {
+                case 10:
+                    result += " | x is 10";
+                    break;
+                default:
+                    result += " | x is not 10";
+            }
+
+            document.getElementById("checkResult").innerText = result;
+        }
+
+        // Using for-loop, break, and continue
+        function loopTest() {
+            let output = "";
+            for (let i = 0; i < 5; i++) {
+                if (i === 2) {
+                    continue;  // Skips when i is 2
+                }
+                output += i + " ";
+                if (i === 4) {
+                    break;  // Breaks the loop when i is 4
+                }
+            }
+            document.getElementById("loopResult").innerText = "Loop Output: " + output;
+        }
+
+        // Try-catch-finally for error handling
+        function handleError() {
+            let result;
+            try {
+                result = sum(10, "5");  // This will cause an error because "5" is a string
+            } catch (error) {
+                result = "Error caught: " + error;
+            } finally {
+                result += " | Finally block executed.";
+            }
+
+            document.getElementById("errorResult").innerText = result;
+        }
+
+        // Class Declaration with Inheritance
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+            speak() {
+                console.log(this.name + " makes a noise");
+            }
+        }
+
+        class Dog extends Animal {
+            constructor(name, breed) {
+                super(name);  // Calls the parent class's constructor
+                this.breed = breed;
+            }
+            speak() {
+                console.log(this.name + " barks");
+            }
+        }
+
+        function testClass() {
+            let dog = new Dog("Rex", "Golden Retriever");
+            dog.speak();
+            document.getElementById("classResult").innerText = "Dog object created and speak() method called.";
+        }
+
+        // async-await example
+        async function fetchData() {
+            try {
+                let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+                let json = await response.json();
+                document.getElementById("fetchResult").innerText = "Data fetched successfully. Check the console.";
+                console.log(json);  // Data fetched and logged in the console
+            } catch (error) {
+                document.getElementById("fetchResult").innerText = "Error fetching data.";
+            }
+        }
+
+        // Using instanceof and in operator
+        function checkInstance() {
+            let instanceCheck = "";
+            let dog = new Dog("Rex", "Golden Retriever");
+            instanceCheck += "dog instanceof Dog: " + (dog instanceof Dog) + " | ";
+            instanceCheck += "dog instanceof Animal: " + (dog instanceof Animal) + " | ";
+            instanceCheck += "'name' in dog: " + ("name" in dog) + " | ";
+            instanceCheck += "'age' in dog: " + ("age" in dog);
+
+            document.getElementById("instanceResult").innerText = instanceCheck;
+        }
+
+        // Using typeof, delete
+        function checkTypeAndDelete() {
+            let result = "";
+            result += "typeof x: " + typeof x + " | ";
+            result += "typeof dog: " + typeof new Dog("Rex", "Golden Retriever") + " | ";
+            
+            let dog = new Dog("Rex", "Golden Retriever");
+            delete dog.breed;
+            result += "dog.breed after delete: " + dog.breed;
+
+            document.getElementById("typeDeleteResult").innerText = result;
+        }
+
+        // Using void keyword
+        function doSomething() {
+            console.log("Doing something...");
+            return true;
+        }
+
+        void doSomething();  // It will ignore the return value
+
+        // Using yield keyword with generator function
+        function* generatorFunction() {
+            yield "Hello";
+            yield "World";
+        }
+
+        function testGenerator() {
+            let generator = generatorFunction();
+            document.getElementById("generatorResult").innerText = "Generator Output: " + generator.next().value + ", " + generator.next().value;
+        }
+    </script>
+</head>
+<body>
+    <h1>JavaScript Keywords in Action</h1>
+    
+    <div>
+        <p id="sumResult">Sum Result will be displayed here...</p>
+        <p id="checkResult">Check Values result will be displayed here...</p>
+        <p id="loopResult">Loop Result will be displayed here...</p>
+        <p id="errorResult">Error Handling result will be displayed here...</p>
+        <p id="classResult">Class result will be displayed here...</p>
+        <p id="fetchResult">Fetch Data result will be displayed here...</p>
+        <p id="instanceResult">Instance check result will be displayed here...</p>
+        <p id="typeDeleteResult">Type & Delete result will be displayed here...</p>
+        <p id="generatorResult">Generator result will be displayed here...</p>
+    </div>
+    
+    <button onclick="checkValues()">Check Values</button>
+    <button onclick="loopTest()">Start Loop Test</button>
+    <button onclick="handleError()">Test Error Handling</button>
+    <button onclick="testClass()">Test Class</button>
+    <button onclick="fetchData()">Fetch Data</button>
+    <button onclick="checkInstance()">Check Instance</button>
+    <button onclick="checkTypeAndDelete()">Check Type & Delete</button>
+    <button onclick="testGenerator()">Test Generator</button>
+
+</body>
+</html>
