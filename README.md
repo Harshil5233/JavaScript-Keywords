@@ -24,4 +24,4 @@ This project demonstrates the usage of various **JavaScript keywords** in action
 1. **Clone the repository** to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/js-keywords-example.git
+   git clone https://github.com/harshil5233/js-keywords-example.git
